@@ -1,4 +1,10 @@
 source ~/.bashrc
+
+# Auto-install antigen if not present
+if [[ ! -f ~/.antigen/antigen.zsh ]]; then
+  mkdir -p ~/.antigen
+  curl -L git.io/antigen > ~/.antigen/antigen.zsh
+fi
 source ~/.antigen/antigen.zsh
 
 alias set_proxy="export ALL_PROXY=socks5://127.0.0.1:1080"
@@ -13,6 +19,7 @@ alias getjson_ip="curl -s ifconfig.co/json|jq ."
 
   # Bundles from the default repo (robbyrussell's oh-my-zsh).
   antigen bundle command-not-found  # suggests package name with relevant command
+  antigen bundle docker             # docker autocomplete plugin
   antigen bundle gem                # support for Ruby package manager
   antigen bundle git                # support for git
   antigen bundle history            # aliases: h for history, hsi for grepping history
